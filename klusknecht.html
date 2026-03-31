@@ -1043,6 +1043,289 @@ HX]\XX[Ø[Ý[]ÜÜÜ[Ù]]Û\ÜÏH
 </div>
 
 <!-- ============================================================
+     PAGE: GEREEDSCHAPSKIST
+     ============================================================ -->
+<div id="page-gereedschapskist" class="page">
+  <div style="background:var(--gray-900);padding:40px 16px 48px;text-align:center">
+    <div style="margin-bottom:16px;display:flex;justify-content:center;color:rgba(255,255,255,.85)"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+    <span class="badge badge-orange" style="margin-bottom:14px;font-size:13px">Gratis te gebruiken</span>
+    <h1 style="font-size:clamp(26px,5vw,44px);font-weight:900;color:white;letter-spacing:-.4px;margin-bottom:12px">Online Gereedschapskist</h1>
+    <p style="font-size:16px;color:var(--gray-300);max-width:520px;margin:0 auto;line-height:1.6">
+      Slimme, gratis tools die elke klus makkelijker maken. Geen app nodig â direct in je browser.
+    </p>
+  </div>
+
+  <div class="container" style="padding-top:32px;padding-bottom:48px">
+    <div style="display:grid;grid-template-columns:1fr;gap:16px" id="tools-grid-main"></div>
+
+    <div style="background:var(--gray-900);border-radius:var(--radius-xl);padding:28px;text-align:center;margin-top:32px">
+      <h3 style="font-weight:800;color:white;margin-bottom:8px">Mis je een tool?</h3>
+      <p style="color:var(--gray-400);font-size:14px;margin-bottom:16px">Laat het ons weten en we voegen hem toe.</p>
+      <button class="btn btn-primary btn-md" onclick="navigate('forum')">Stel een tool voor</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: VERFCALCULATOR
+     ============================================================ -->
+<div id="page-verfcalculator" class="page">
+  <div class="tool-header">
+    <div class="container">
+      <div class="breadcrumb" style="margin-bottom:14px">
+        <a onclick="navigate('home')">Home</a><span>âº</span>
+        <a onclick="navigate('gereedschapskist')">Gereedschapskist</a><span>âº</span>
+        <span style="color:var(--gray-600)">Verfcalculator</span>
+      </div>
+      <div class="tool-icon-row">
+        <div class="tool-emoji-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6Q8 2 12 2Q16 2 16 6"/><rect x="3" y="6" width="18" height="2" rx="1"/><path d="M5 8L5.5 21Q5.5 22 6.5 22H17.5Q18.5 22 18.5 21L19 8"/><path d="M8 8Q9.5 13 11.5 13Q13.5 13 13.5 10Q13.5 8 16 8"/></svg></div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+            <h1 class="tool-title">Verfcalculator</h1>
+            <span class="badge badge-green">Gratis</span>
+          </div>
+          <p class="tool-desc">Bereken precies hoeveel verf je nodig hebt â nooit meer te veel of te weinig kopen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-body">
+    <!-- Invoer: ruimte -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-body">
+        <h2 style="font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:16px">Ruimte afmetingen</h2>
+        <div class="grid-2" style="margin-bottom:16px">
+          <div class="form-group">
+            <label class="form-label">Breedte muur</label>
+            <div class="input-wrapper">
+              <input type="number" class="form-input has-suffix" id="vf-breedte" placeholder="4.5" step="0.1" min="0">
+              <span class="input-suffix">m</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hoogte muur</label>
+            <div class="input-wrapper">
+              <input type="number" class="form-input has-suffix" id="vf-hoogte" placeholder="2.6" step="0.1" min="0">
+              <span class="input-suffix">m</span>
+            </div>
+          </div>
+        </div>
+        <div class="slider-wrapper" style="margin-bottom:16px">
+          <div class="slider-header">
+            <span class="slider-label">Aantal muren</span>
+            <span class="slider-value" id="vf-muren-val">4 muren</span>
+          </div>
+          <div class="slider-track">
+            <div class="slider-bg"></div>
+            <div class="slider-fill" id="vf-muren-fill" style="width:50%"></div>
+            <div class="slider-thumb" id="vf-muren-thumb" style="left:calc(50% - 11px)"></div>
+            <input type="range" class="slider-input" id="vf-muren" min="1" max="8" value="4" oninput="updateSlider('vf-muren',1,8,v=>v+' muren')">
+          </div>
+        </div>
+        <div class="slider-wrapper" style="margin-bottom:16px">
+          <div class="slider-header">
+            <span class="slider-label">Aantal verflagen</span>
+            <span class="slider-value" id="vf-lagen-val">2 lagen</span>
+          </div>
+          <div class="slider-track">
+            <div class="slider-bg"></div>
+            <div class="slider-fill" id="vf-lagen-fill" style="width:33.3%"></div>
+            <div class="slider-thumb" id="vf-lagen-thumb" style="left:calc(33.3% - 11px)"></div>
+            <input type="range" class="slider-input" id="vf-lagen" min="1" max="4" value="2" oninput="updateSlider('vf-lagen',1,4,v=>v+(v==1?' laag':' lagen'))">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Verfsoort</label>
+          <select class="form-select" id="vf-soort">
+            <option value="10">Muurverf (10 mÂ²/liter)</option>
+            <option value="8">Glansverf / Alkyd (8 mÂ²/liter)</option>
+            <option value="7">Primer / Grondverf (7 mÂ²/liter)</option>
+            <option value="9">Buitenverf (9 mÂ²/liter)</option>
+            <option value="6">Krijtverf (6 mÂ²/liter)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ramen & deuren -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-body">
+        <div class="toggle-wrapper" style="margin-bottom:16px">
+          <div class="toggle-info">
+            <div class="toggle-title">Ramen & deuren aftrekken</div>
+            <div class="toggle-sub">Automatisch oppervlak aftrekken</div>
+          </div>
+          <button class="toggle on" id="vf-toggle" onclick="toggleVerfOpeningen()"></button>
+        </div>
+        <div id="vf-openingen" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="slider-wrapper">
+            <div class="slider-header">
+              <span class="slider-label">Ramen</span>
+              <span class="slider-value" id="vf-ramen-val">2 ramen</span>
+            </div>
+            <div class="slider-track">
+              <div class="slider-bg"></div>
+              <div class="slider-fill" id="vf-ramen-fill" style="width:20%"></div>
+              <div class="slider-thumb" id="vf-ramen-thumb" style="left:calc(20% - 11px)"></div>
+              <input type="range" class="slider-input" id="vf-ramen" min="0" max="10" value="2" oninput="updateSlider('vf-ramen',0,10,v=>v+' ramen')">
+            </div>
+          </div>
+          <div class="slider-wrapper">
+            <div class="slider-header">
+              <span class="slider-label">Deuren</span>
+              <span class="slider-value" id="vf-deuren-val">1 deur</span>
+            </div>
+            <div class="slider-track">
+              <div class="slider-bg"></div>
+              <div class="slider-fill" id="vf-deuren-fill" style="width:20%"></div>
+              <div class="slider-thumb" id="vf-deuren-thumb" style="left:calc(20% - 11px)"></div>
+              <input type="range" class="slider-input" id="vf-deuren" min="0" max="5" value="1" oninput="updateSlider('vf-deuren',0,5,v=>v+(v==1?' deur':' deuren'))">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg btn-full" onclick="berekenVerf()" style="margin-bottom:16px">Bereken verf</button>
+
+    <div id="vf-result"></div>
+
+    <!-- Affiliate -->
+    <div class="affiliate-block" style="margin-top:16px">
+      <div class="affiliate-label">Gesponsord â Verf kopen</div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="width:44px;height:44px;background:var(--gray-100);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gray-500)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:14px;color:var(--gray-900)">Verfwinkel.nl</div>
+          <div style="font-size:12px;color:var(--gray-500)">Gratis bezorging v.a. â¬50</div>
+        </div>
+        <a href="#" class="btn btn-primary btn-sm">Bekijk â</a>
+      </div>
+    </div>
+
+    <!-- SEO content -->
+    <div class="card" style="margin-top:24px">
+      <div class="card-body">
+        <h2 style="font-size:18px;font-weight:800;color:var(--gray-900);margin-bottom:12px">Hoe werkt de verfcalculator?</h2>
+        <div class="prose">
+          <p>De verfcalculator berekent de benodigde verf op basis van je muurafmetingen, het aantal lagen en het verftype. Gemiddeld dekt muurverf 10 mÂ² per liter.</p>
+          <h3>Tips voor het beste resultaat</h3>
+          <ul>
+            <li>Koop altijd 10% meer dan berekend voor herstelwerk</li>
+            <li>Bewaar restverf afgesloten op een koele plek</li>
+            <li>Ruwe muren hebben meer verf nodig dan gladde</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: MATERIAALCALCULATOR
+     ============================================================ -->
+<div id="page-materiaalcalculator" class="page">
+  <div class="tool-header">
+    <div class="container">
+      <div class="breadcrumb" style="margin-bottom:14px">
+        <a onclick="navigate('home')">Home</a><span>âº</span>
+        <a onclick="navigate('gereedschapskist')">Gereedschapskist</a><span>âº</span>
+        <span style="color:var(--gray-600)">Materiaalcalculator</span>
+      </div>
+      <div class="tool-icon-row">
+        <div class="tool-emoji-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="1"/><rect x="2" y="14" width="20" height="7" rx="1"/><line x1="7" y1="3" x2="7" y2="10"/><line x1="17" y1="14" x2="17" y2="21"/></svg></div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+            <h1 class="tool-title">Materiaalcalculator</h1>
+            <span class="badge badge-green">Gratis</span>
+          </div>
+          <p class="tool-desc">Bereken exact hoeveel tegels, laminaat, parket of klinkers je nodig hebt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-body">
+    <!-- Type selector -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-body">
+        <h2 style="font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:14px">Kies materiaal</h2>
+        <div class="grid-2" style="gap:10px">
+          <button class="mat-type-btn active" data-type="tegels" onclick="setMatType('tegels')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:var(--radius-md);border:2px solid var(--orange);background:rgba(255,107,53,.05);cursor:pointer;transition:all .2s;font-family:var(--font)">
+            <span style="color:var(--orange)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/><rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/></svg></span><span style="font-size:14px;font-weight:700;color:var(--gray-900)">Vloertegels</span>
+          </button>
+          <button class="mat-type-btn" data-type="laminaat" onclick="setMatType('laminaat')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:var(--radius-md);border:2px solid var(--gray-200);background:white;cursor:pointer;transition:all .2s;font-family:var(--font)">
+            <span style="color:var(--gray-500)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/><rect x="2" y="16" width="20" height="4" rx="1"/></svg></span><span style="font-size:14px;font-weight:700;color:var(--gray-900)">Laminaat</span>
+          </button>
+          <button class="mat-type-btn" data-type="parket" onclick="setMatType('parket')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:var(--radius-md);border:2px solid var(--gray-200);background:white;cursor:pointer;transition:all .2s;font-family:var(--font)">
+            <span style="color:var(--gray-500)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="13" height="5" rx="1"/><rect x="17" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="13" height="5" rx="1"/><rect x="2" y="16" width="13" height="5" rx="1"/><rect x="17" y="16" width="5" height="5" rx="1"/></svg></span><span style="font-size:14px;font-weight:700;color:var(--gray-900)">Parket</span>
+          </button>
+          <button class="mat-type-btn" data-type="klinkers" onclick="setMatType('klinkers')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:var(--radius-md);border:2px solid var(--gray-200);background:white;cursor:pointer;transition:all .2s;font-family:var(--font)">
+            <span style="color:var(--gray-500)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="6" rx="1"/><rect x="2" y="14" width="20" height="6" rx="1"/><line x1="7" y1="4" x2="7" y2="10"/><line x1="17" y1="14" x2="17" y2="20"/></svg></span><span style="font-size:14px;font-weight:700;color:var(--gray-900)">Klinkers</span>
+          </button>
+          <button class="mat-type-btn" data-type="pvc" onclick="setMatType('pvc')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:var(--radius-md);border:2px solid var(--gray-200);background:white;cursor:pointer;transition:all .2s;font-family:var(--font)">
+            <span style="color:var(--gray-500)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"><line x1="1" y1="15" x2="11" y2="5"/><line x1="1" y1="23" x2="11" y2="13"/><line x1="13" y1="5" x2="23" y2="15"/><line x1="13" y1="13" x2="23" y2="23"/></svg></span><span style="font-size:14px;font-weight:700;color:var(--gray-900)">Klik- of plak-PVC</span>
+          </button>
+          <button class="mat-type-btn" data-type="gipsplaten" onclick="setMatType('gipsplaten')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:var(--radius-md);border:2px solid var(--gray-200);background:white;cursor:pointer;transition:all .2s;font-family:var(--font)">
+            <span style="color:var(--gray-500)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="1"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="8" y1="3" x2="8" y2="8"/><line x1="16" y1="16" x2="16" y2="21"/></svg></span><span style="font-size:14px;font-weight:700;color:var(--gray-900)">Gipsplaten</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-body">
+        <h2 style="font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:16px">Ruimte & formaat</h2>
+        <div class="grid-2" style="margin-bottom:16px">
+          <div class="form-group">
+            <label class="form-label">Lengte ruimte</label>
+            <div class="input-wrapper">
+              <input type="number" class="form-input has-suffix" id="mat-lengte" placeholder="5.0" step="0.1" min="0">
+              <span class="input-suffix">m</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Breedte ruimte</label>
+            <div class="input-wrapper">
+              <input type="number" class="form-input has-suffix" id="mat-breedte" placeholder="3.5" step="0.1" min="0">
+              <span class="input-suffix">m</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:16px">
+          <label class="form-label">Formaat</label>
+          <select class="form-select" id="mat-formaat">
+            <option value="30x30">30Ã30 cm (standaard)</option>
+            <option value="60x60">60Ã60 cm (groot formaat)</option>
+            <option value="15x15">15Ã15 cm (klassiek)</option>
+            <option value="30x60">30Ã60 cm (rechthoekig)</option>
+            <option value="10x30">10Ã30 cm (metrotegel)</option>
+          </select>
+        </div>
+        <div class="slider-wrapper">
+          <div class="slider-header">
+            <span class="slider-label">Uitvalpercentage</span>
+            <span class="slider-value" id="mat-uitval-val">10% uitval</span>
+          </div>
+          <div class="slider-track">
+            <div class="slider-bg"></div>
+            <div class="slider-fill" id="mat-uitval-fill" style="width:25%"></div>
+            <div class="slider-thumb" id="mat-uitval-thumb" style="left:calc(25% - 11px)"></div>
+            <input type="range" class="slider-input" id="mat-uitval" min="5" max="25" value="10" oninput="updateSlider('mat-uitval',5,25,v=>v+'% uitval')">
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--gray-400);margin-top:6px">10% is standaard. Meer bij diagonaal legpatroon.</p>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg btn-full" onclick="berekenMateriaal()" style="margin-bottom:16px">Bereken materiaal</button>
+    <div id="mat-result"></div>
+  </div>
+</div>
+
+
+<!-- ============================================================
      PAGE: BOORAFSTAND
      ============================================================ -->
 <div id="page-boorafstand" class="page">
