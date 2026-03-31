@@ -433,8 +433,9 @@ footer {
      ============================================================ -->
 <header id="header">
   <div class="header-inner">
-    <div class="logo" onclick="navigate('home')" style="cursor:pointer">
-      <img src="klusknecht-logo.png" alt="Klusknecht" style="height:36px;width:auto;display:block;">
+    <div class="logo" onclick="navigate('home')" style="cursor:pointer;display:flex;align-items:center;gap:8px">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#FF6B35"/><path d="M10 22L14.5 17.5M14.5 17.5C13.5 16.5 12 15 12 13.5C12 11.5 13.5 10 15.5 10C16.5 10 17.5 10.5 18 11.2L15.8 13.4L18.6 16.2L20.8 14C21.5 14.5 22 15.5 22 16.5C22 18.5 20.5 20 18.5 20C17 20 15.5 18.5 14.5 17.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span style="font-weight:900;font-size:19px;letter-spacing:-.3px;color:var(--gray-900)">Klus<span style="color:var(--orange)">knecht</span></span>
     </div>
 
     <nav class="nav-desktop">
@@ -457,8 +458,9 @@ footer {
 <div id="auth-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px" onclick="closeModal(event)">
   <div style="background:white;border-radius:24px;padding:32px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.25)" onclick="event.stopPropagation()">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-      <div style="display:flex;align-items:center;gap:10px">
-        <img src="klusknecht-logo.png" alt="Klusknecht" style="height:28px;width:auto">
+      <div style="display:flex;align-items:center;gap:8px">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#FF6B35"/><path d="M10 22L14.5 17.5M14.5 17.5C13.5 16.5 12 15 12 13.5C12 11.5 13.5 10 15.5 10C16.5 10 17.5 10.5 18 11.2L15.8 13.4L18.6 16.2L20.8 14C21.5 14.5 22 15.5 22 16.5C22 18.5 20.5 20 18.5 20C17 20 15.5 18.5 14.5 17.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="font-weight:900;font-size:16px;letter-spacing:-.2px;color:var(--gray-900)">Klus<span style="color:var(--orange)">knecht</span></span>
       </div>
       <button onclick="closeModalDirect()" style="width:32px;height:32px;border:none;background:var(--gray-100);border-radius:10px;font-size:18px;cursor:pointer;color:var(--gray-500);line-height:1;display:flex;align-items:center;justify-content:center">Ã</button>
     </div>
@@ -726,8 +728,9 @@ footer {
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <div class="footer-logo">
-            <img src="klusknecht-logo.png" alt="Klusknecht" style="height:32px;width:auto;display:block;">
+          <div class="footer-logo" style="display:flex;align-items:center;gap:8px">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#FF6B35"/><path d="M10 22L14.5 17.5M14.5 17.5C13.5 16.5 12 15 12 13.5C12 11.5 13.5 10 15.5 10C16.5 10 17.5 10.5 18 11.2L15.8 13.4L18.6 16.2L20.8 14C21.5 14.5 22 15.5 22 16.5C22 18.5 20.5 20 18.5 20C17 20 15.5 18.5 14.5 17.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span style="font-weight:900;font-size:20px;letter-spacing:-.3px;color:white">Klus<span style="color:var(--orange)">knecht</span></span>
           </div>
           <p class="footer-tagline">HÃ©t platform voor Nederlandse doe-het-zelvers. Praktisch, betrouwbaar en inspirerend.</p>
         </div>
@@ -1358,25 +1361,30 @@ HX]\XX[Ø[Ý[]ÜÜÜ[Ù]]Û\ÜÏH
 // ============================================================
 const SUPA_URL = 'https://ztxmjcppxbnxhxetzxef.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0eG1qY3BweGJueGh4ZXR6eGVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4MTEyMzIsImV4cCI6MjA5MDM4NzIzMn0.cDReJoXCFc_IEXKMF4mCREgxzfWFSusIvOAgPi2Ns2c';
-const db = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+let db = null;
+try {
+  if (window.supabase && window.supabase.createClient) {
+    db = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+  }
+} catch(e) { console.warn('Supabase init failed:', e); }
 
 // ============================================================
 // AUTH STATE
 // ============================================================
 let currentUser = null;
 
-db.auth.getSession().then(({ data }) => {
-  currentUser = data?.session?.user ?? null;
-  updateAuthUI();
-});
-
-db.auth.onAuthStateChange((_event, session) => {
-  currentUser = session?.user ?? null;
-  updateAuthUI();
-  // Refresh forum if visible
-  const forumEl = document.getElementById('forum-topics');
-  if (forumEl) { delete forumEl.dataset.rendered; renderForum(); }
-});
+if (db) {
+  db.auth.getSession().then(({ data }) => {
+    currentUser = data?.session?.user ?? null;
+    updateAuthUI();
+  }).catch(() => {});
+  db.auth.onAuthStateChange((_event, session) => {
+    currentUser = session?.user ?? null;
+    updateAuthUI();
+    const forumEl = document.getElementById('forum-topics');
+    if (forumEl) { delete forumEl.dataset.rendered; renderForum(); }
+  });
+}
 
 function updateAuthUI() {
   const loginBtn = document.getElementById('btn-login');
@@ -1447,6 +1455,7 @@ async function handleAuth(e) {
   btn.textContent = 'â¦';
   msg.style.display = 'none';
 
+  if (!db) { showMsg(msg, 'Authenticatie niet beschikbaar.', 'red'); btn.disabled = false; btn.textContent = authMode === 'login' ? 'Inloggen' : 'Registreren'; return; }
   let error, data;
   if (authMode === 'login') {
     ({ data, error } = await db.auth.signInWithPassword({ email, password: pw }));
@@ -1512,6 +1521,7 @@ async function plaatsNieuwTopic(e) {
   btn.disabled = true;
   btn.textContent = 'â¦';
 
+  if (!db) { showMsg(msg, 'Database niet beschikbaar.', 'red'); btn.disabled = false; btn.textContent = 'Topic plaatsen'; return; }
   const { error } = await db.from('forum_topics').insert({
     title: titel,
     category: cat,
@@ -1692,12 +1702,8 @@ async function renderKlustips() {
   if (g && !g.dataset.rendered) {
     g.dataset.rendered = '1';
 
-    const { data, error } = await db
-      .from('klustips')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(12);
-
+    let data = null, error = null;
+    if (db) { try { ({ data, error } = await db.from('klustips').select('*').order('created_at', { ascending: false }).limit(12)); } catch(e) { error = e; } }
     const tips = (!error && data && data.length > 0) ? data : KLUSTIPS_DATA;
     g.innerHTML = tips.map(t => klustipHtml(t)).join('');
   }
@@ -1753,12 +1759,8 @@ async function renderInspiratie() {
   if (g && !g.dataset.rendered) {
     g.dataset.rendered = '1';
 
-    const { data, error } = await db
-      .from('inspiratie_artikelen')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(16);
-
+    let data = null, error = null;
+    if (db) { try { ({ data, error } = await db.from('inspiratie_artikelen').select('*').order('created_at', { ascending: false }).limit(16)); } catch(e) { error = e; } }
     const items = (!error && data && data.length > 0) ? data : [...INSPIRATIE, ...INSPIRATIE];
     g.innerHTML = items.map((p, i) => inspiratieHtml(p, i)).join('');
   }
@@ -1822,12 +1824,8 @@ async function renderForum() {
     tc.dataset.rendered = '1';
     tc.innerHTML = '<div style="padding:24px;text-align:center;color:var(--gray-400);font-size:14px">Topics ladenâ¦</div>';
 
-    const { data, error } = await db
-      .from('forum_topics')
-      .select('*, reply_count:forum_replies(count)')
-      .order('created_at', { ascending: false })
-      .limit(25);
-
+    let data = null, error = null;
+    if (db) { try { ({ data, error } = await db.from('forum_topics').select('*, reply_count:forum_replies(count)').order('created_at', { ascending: false }).limit(25)); } catch(e) { error = e; } }
     if (!error && data && data.length > 0) {
       tc.innerHTML = data.map(t => forumTopicHtml(t, true)).join('');
     } else {
